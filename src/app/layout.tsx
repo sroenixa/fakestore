@@ -4,6 +4,8 @@ import "./globals.css";
 import StyledComponentsRegistry from "@/src/lib/styled-components-registry";
 import {CustomThemeProvider} from "@/src/contexts/theme-context";
 import {LanguageProvider} from "@/src/contexts/language-context";
+import {Header} from "@/src/components/organisms/header";
+import {StyledContainer} from "@/src/components/atoms/container";
 
 
 const inter = Inter({
@@ -31,7 +33,10 @@ export default function RootLayout({
       <CustomThemeProvider >
         <LanguageProvider>
           <StyledComponentsRegistry>
-            {children}
+            <Header/>
+              <StyledContainer>
+                  {children}
+              </StyledContainer>
           </StyledComponentsRegistry>
         </LanguageProvider>
       </CustomThemeProvider>

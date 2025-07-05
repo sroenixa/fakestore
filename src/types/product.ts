@@ -12,9 +12,11 @@ export interface Product {
 }
 
 export interface ProductFilters {
+    page?: string;
+    limit?: string;
     category?: string;
-    minPrice?: number;
-    maxPrice?: number;
+    minPrice?: string;
+    maxPrice?: string;
     sortBy?: 'price-asc' | 'price-desc' | 'rating' | 'title';
     search?: string;
 }

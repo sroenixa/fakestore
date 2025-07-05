@@ -5,7 +5,6 @@ import styled, { css } from "styled-components"
 interface ButtonProps {
     variant?: "primary" | "secondary" | "outline"
     size?: "small" | "medium" | "large"
-    fullWidth?: boolean
     disabled?: boolean
 }
 
@@ -20,12 +19,7 @@ const StyledButton = styled.button<ButtonProps>`
   border: none;
   text-decoration: none;
   
-  ${(props) =>
-    props.fullWidth &&
-    css`
-    width: 100%;
-  `}
-  
+    
   ${(props) =>
     props.disabled &&
     css`
@@ -46,6 +40,7 @@ const StyledButton = styled.button<ButtonProps>`
           padding: 16px 24px;
           font-size: 16px;
           height: 52px;
+          width: 100%;
         `
         default:
             return css`

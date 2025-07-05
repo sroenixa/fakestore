@@ -20,9 +20,8 @@ const LanguageButton = styled.button`
   height: 48px;
   
   &:hover {
-    border-color: ${(props) => props.theme.colors.primary};
-    background-color: ${(props) => props.theme.colors.primary};
-    color: ${(props) => props.theme.colors.surface};
+      background-color: ${(props) => props.theme.colors.border};
+      transform: translateY(-2px);
   }
 `
 
