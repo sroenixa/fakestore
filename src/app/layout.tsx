@@ -6,6 +6,8 @@ import {CustomThemeProvider} from "@/src/contexts/theme-context";
 import {LanguageProvider} from "@/src/contexts/language-context";
 import {Header} from "@/src/components/organisms/header";
 import {StyledContainer} from "@/src/components/atoms/container";
+import {CartProvider} from "@/src/contexts/cart-context";
+import {Toaster} from 'react-hot-toast';
 
 
 const inter = Inter({
@@ -31,14 +33,19 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
       <CustomThemeProvider >
-        <LanguageProvider>
-          <StyledComponentsRegistry>
-            <Header/>
-              <StyledContainer>
-                  {children}
-              </StyledContainer>
-          </StyledComponentsRegistry>
-        </LanguageProvider>
+        <CartProvider>
+          <LanguageProvider>
+            <StyledComponentsRegistry>
+              <Header/>
+                <StyledContainer>
+                    <Toaster position="bottom-right"
+                       reverseOrder={false}
+                    />
+                    {children}
+                </StyledContainer>
+            </StyledComponentsRegistry>
+          </LanguageProvider>
+        </CartProvider>
       </CustomThemeProvider>
       </body>
     </html>

@@ -6,6 +6,7 @@ import { Heading2 } from "@/src/components/atoms/typography"
 import { ThemeToggle } from "@/src/components/atoms/theme-toggle"
 import { LanguageToggle } from "@/src/components/atoms/language-toggle"
 import { useLanguage } from "@/src/contexts/language-context"
+import {CartIconComponent} from "@/src/components/molecules/cart/cart-icon";
 
 const HeaderContainer = styled.header`
   background: ${(props) => props.theme.colors.surface};
@@ -54,6 +55,7 @@ export function Header() {
                     <Controls>
                         <LanguageToggle />
                         <ThemeToggle />
+                        <CartIconComponent/>
                     </Controls>
                 </Nav>
             </HeaderContent>

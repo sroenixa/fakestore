@@ -9,6 +9,9 @@ import { Button } from "@/src/components/atoms/button"
 import {Heading3, SmallText, Text} from "@/src/components/atoms/typography"
 import { Rating } from "@/src/components/atoms/rating"
 import { useLanguage } from "@/src/contexts/language-context"
+import { useCart } from "@/src/contexts/cart-context"
+import toast from "react-hot-toast";
+
 
 const Card = styled.div`
   background: ${(props) => props.theme.colors.surface};
@@ -60,10 +63,13 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
     const { t } = useLanguage()
+    const { addItem } = useCart()
 
     const handleAddToCart = (e: React.MouseEvent) => {
         e.preventDefault()
         e.stopPropagation()
+        addItem(product)
+        toast.success(t("cart.add"))
     }
 
     const getCategoryTranslation = (category: string) => {

@@ -2,7 +2,7 @@
 
 import styled from "styled-components"
 import type { Product } from "@/src/types/product"
-import { ProductCard } from "@/src/components/molecules/product-card"
+import { ProductCard } from "@/src/components/molecules/product-list/product-card"
 import { useLanguage } from "@/src/contexts/language-context"
 
 const Grid = styled.div`

@@ -13,13 +13,10 @@ interface Translations {
 }
 
 const translations: Translations = {
-    //header
     "header.title": {
         en: "FakeStore",
         tr: "FakeStore",
     },
-
-    // category
     "category.electronics": {
         en: "Electronics",
         tr: "Elektronik",
@@ -36,8 +33,6 @@ const translations: Translations = {
         en: "Women's Clothing",
         tr: "Kadın Giyim",
     },
-
-    // filters
     "filters.category": {
         en: "Category",
         tr: "Kategori",
@@ -86,8 +81,6 @@ const translations: Translations = {
         en: "Clear Filters",
         tr: "Filtreleri Temizle",
     },
-
-    // search
     "search.button": {
         en: "Search",
         tr: "Ara",
@@ -96,8 +89,6 @@ const translations: Translations = {
         en: "Search for products...",
         tr: "Ürün ara...",
     },
-
-    // pagination
     "pagination.previous": {
         en: "Previous",
         tr: "Önceki",
@@ -118,8 +109,6 @@ const translations: Translations = {
         en: "products",
         tr: "ürün",
     },
-
-    //product
     "product.addToCart": {
         en: "Add To Cart",
         tr: "Sepete Ekle",
@@ -132,6 +121,67 @@ const translations: Translations = {
         en: "Try adjusting your search or filters",
         tr: "Arama veya filtrelerinizi ayarlamayı deneyin",
     },
+    "cart.title": {
+        en: "Shopping Cart",
+        tr: "Alışveriş Sepeti",
+    },
+    "cart.items": {
+        en: "items",
+        tr: "ürün",
+    },
+    "cart.empty": {
+        en: "Your cart is empty",
+        tr: "Sepetiniz boş",
+    },
+    "cart.emptyDescription": {
+        en: "Add some products to get started!",
+        tr: "Başlamak için birkaç ürün ekleyin!",
+    },
+    "cart.continueShopping": {
+        en: "Continue Shopping",
+        tr: "Alışverişe Devam Et",
+    },
+    "cart.each": {
+        en: "each",
+        tr: "adet",
+    },
+    "cart.removeFromCart": {
+        en: "Remove from Cart",
+        tr: "Sepetten Çıkar",
+    },
+
+    "cart.subtotal": {
+        en: "Subtotal",
+        tr: "Ara Toplam",
+    },
+    "cart.tax": {
+        en: "Tax",
+        tr: "Vergi",
+    },
+    "cart.total": {
+        en: "Total",
+        tr: "Toplam",
+    },
+    "cart.clearCart": {
+        en: "Clear Cart",
+        tr: "Sepeti Temizle",
+    },
+    "cart.add":{
+        en: "Product Added To Cart",
+        tr: "Ürün Sepete Eklendi",
+    },
+    "cart.clear":{
+        en: "Cart Cleared",
+        tr: "Sepet Temizlendi",
+    },
+    "cart.update":{
+        en: "Cart Updated",
+        tr: "Sepet Güncellendi",
+    },
+    "cart.remove":{
+        en: "Product Removed",
+        tr: "Ürün Sepetten Çıkartıldı",
+    }
 
 }
 

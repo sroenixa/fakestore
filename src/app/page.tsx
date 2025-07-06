@@ -1,6 +1,6 @@
 import {Header} from "@/src/components/organisms/header";
 import {ProductsResponse} from "@/src/types/product";
-import {Filters} from "@/src/components/molecules/filter";
+import {Filters} from "@/src/components/molecules/product-list/filter";
 import ProductList from "@/src/components/pages/product-list";
 
 export default async function Home(context: { searchParams: { page?: string,limit?: string, category?: string, sortBy?: "title" | "price-asc" | "price-desc" | "rating" | undefined, minPrice?: string, maxPrice?: string, search?: string } }) {
