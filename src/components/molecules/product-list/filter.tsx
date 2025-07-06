@@ -5,6 +5,8 @@ import { Select, Input } from "@/src/components/atoms/input"
 import { Button } from "@/src/components/atoms/button"
 import { useLanguage } from "@/src/contexts/language-context"
 import type { ProductFilters } from "@/src/types/product"
+import {useDebouncedEffect} from "@/src/hooks/useDebouncedEffect";
+import {useEffect, useRef, useState} from "react";
 
 const FiltersContainer = styled.div`
   display: flex;
@@ -85,6 +87,35 @@ export function Filters({ filters, categories, onFiltersChange, onClearFilters }
         return translation === categoryKey ? category.charAt(0).toUpperCase() + category.slice(1) : translation
     }
 
+    const [minPrice, setMinPrice] = useState<string>(filters.minPrice ?? "")
+    const [maxPrice, setMaxPrice] = useState<string>(filters.maxPrice ?? "")
+
+    useEffect(() => {
+        setMinPrice(filters.minPrice ?? "");
+        setMaxPrice(filters.maxPrice ?? "");
+    }, [filters]);
+
+    useDebouncedEffect(
+        () =>
+            handleFilterChange(
+                "minPrice",
+                minPrice ? Number.parseFloat(minPrice) : undefined,
+            ),
+        [minPrice],
+        1000,
+    )
+
+    useDebouncedEffect(
+        () =>
+            handleFilterChange(
+                "maxPrice",
+                maxPrice ? Number.parseFloat(maxPrice) : undefined,
+            ),
+        [maxPrice],
+        1000,
+    )
+
+
     return (
         <FiltersContainer>
             <FilterGroup>
@@ -119,18 +150,18 @@ export function Filters({ filters, categories, onFiltersChange, onClearFilters }
                     <PriceInput
                         type="number"
                         placeholder={t("filters.min")}
-                        value={filters.minPrice || ""}
+                        value={minPrice}
                         onChange={(e) =>
-                            handleFilterChange("minPrice", e.target.value ? Number.parseFloat(e.target.value) : undefined)
+                            setMinPrice(e.target.value === "" ? "" : e.target.value)
                         }
                     />
                     <span>-</span>
                     <PriceInput
                         type="number"
+                        value={maxPrice}
                         placeholder={t("filters.max")}
-                        value={filters.maxPrice || ""}
                         onChange={(e) =>
-                            handleFilterChange("maxPrice", e.target.value ? Number.parseFloat(e.target.value) : undefined)
+                            setMaxPrice(e.target.value === "" ? "" : e.target.value)
                         }
                     />
                 </PriceInputs>

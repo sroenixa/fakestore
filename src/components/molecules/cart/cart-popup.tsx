@@ -339,7 +339,7 @@ export function CartPopup({ isOpen, onClose }: CartPopupProps) {
                             <Text>${(totalPrice * 1.08).toFixed(2)}</Text>
                         </SummaryRow>
 
-                        <Button size={"large"} variant="outline" onClick={() => {clearCart;  toast.success(t("cart.clear"))} } style={{ marginTop: "8px" }}>
+                        <Button size={"large"} variant="outline" onClick={() => {toast.success(t("cart.clear")); clearCart()} } style={{ marginTop: "8px" }}>
                             {t("cart.clearCart")}
                         </Button>
                     </CartFooter>

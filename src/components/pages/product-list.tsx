@@ -2,11 +2,11 @@
 
 import {Header} from "@/src/components/organisms/header";
 import {ProductFilters, ProductsResponse} from "@/src/types/product";
-import {Filters} from "@/src/components/molecules/filter";
+import {Filters} from "@/src/components/molecules/product-list/filter";
 import {useEffect, useRef, useState} from "react";
 import {useRouter} from "next/navigation";
-import {SearchBar} from "@/src/components/molecules/search";
-import {Pagination} from "@/src/components/molecules/pagination";
+import {SearchBar} from "@/src/components/molecules/product-list/search";
+import {Pagination} from "@/src/components/molecules/product-list/pagination";
 import {ProductGrid} from "@/src/components/organisms/product-grid";
 
 interface ProductListProps {
@@ -24,18 +24,20 @@ export default function ProductList({categoriesData, productsResponseData,filter
 
     useEffect(() => {
 
-        // Blocked When First Render
         if (isFirstRender.current) {
             isFirstRender.current = false
             return
         }
 
-        const query = new URLSearchParams(filters as any)
+        const query = new URLSearchParams(
+            Object.entries(filters)
+                .filter(([, v]) => v !== undefined && v !== "" && v !== null)
+                .map(([k, v]) => [k, String(v)]),
+        )
         router.push(`?${query.toString()}`)
 
     }, [filters]);
 
-    //filter events
     const handleFiltersChange = (newFilters: ProductFilters) => {
         setFilters({...newFilters,page:"1"})
     }
@@ -44,12 +46,10 @@ export default function ProductList({categoriesData, productsResponseData,filter
         setFilters({})
     }
 
-    //search events
     const handleSearch = () => {
         setFilters({ ...filters,search: searchTerm })
     }
 
-    // pagination events
     const handlePage = (page:string) => {
         setPage(page);
         setFilters({ ...filters,page:page})
