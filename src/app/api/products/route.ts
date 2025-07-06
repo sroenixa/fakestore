@@ -3,8 +3,24 @@ import {Product} from "@/src/types/product";
 
 const BASE_URL = 'https://fakestoreapi.com/products'
 
+let cachedProducts: Product[] = [];
+let lastFetchTime = 0;
+const CACHE_DURATION = 60 * 1000; // 60 saniye
+
+
 export async function GET(req: NextRequest) {
     try {
+        const now = Date.now();
+        if (!cachedProducts || now - lastFetchTime > CACHE_DURATION) {
+            const response = await fetch(BASE_URL);
+            if (!response.ok) return NextResponse.json({ error: 'Failed to fetch products' }, { status: 502 });
+            cachedProducts = await response.json();
+            lastFetchTime = now;
+        }
+
+        let products: Product[] = [...cachedProducts];
+
+
         const { searchParams } = req.nextUrl
 
         const page = parseInt(searchParams.get('page') || '1')
@@ -28,8 +44,6 @@ export async function GET(req: NextRequest) {
         if (!response.ok) {
             return NextResponse.json({ error: 'Failed to fetch products' }, { status: 502 })
         }
-
-        let products: Product[] = await response.json()
 
         if (category && category !== 'all') {
             products = products.filter(

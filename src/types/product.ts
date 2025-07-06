@@ -12,8 +12,8 @@ export interface Product {
 }
 
 export interface ProductFilters {
-    page?: string;
-    limit?: string;
+    page?: number;
+    limit?: number;
     category?: string;
     minPrice?: string;
     maxPrice?: string;

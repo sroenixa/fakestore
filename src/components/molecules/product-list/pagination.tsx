@@ -22,7 +22,7 @@ interface PaginationProps {
     currentPage: number
     totalItems: number
     itemsPerPage: number
-    onPageChange: (page: string) => void
+    onPageChange: (page: number) => void
 }
 
 export function Pagination({ currentPage, totalItems, itemsPerPage, onPageChange }: PaginationProps) {
@@ -36,7 +36,7 @@ export function Pagination({ currentPage, totalItems, itemsPerPage, onPageChange
     return (
         <PaginationContainer>
 
-            <Button variant="outline" disabled={currentPage === 1} onClick={() => onPageChange(String(currentPage - 1))}>
+            <Button variant="outline" disabled={currentPage === 1} onClick={() => onPageChange(currentPage - 1)}>
                 {t("pagination.previous")}
             </Button>
 
@@ -44,7 +44,7 @@ export function Pagination({ currentPage, totalItems, itemsPerPage, onPageChange
                 {t("pagination.showing")} {startItem}-{endItem} {t("pagination.of")} {totalItems} {t("pagination.products")}
             </PageInfo>
 
-            <Button variant="outline" disabled={currentPage === totalPages} onClick={() => onPageChange(String(currentPage + 1))}>
+            <Button variant="outline" disabled={currentPage === totalPages} onClick={() => onPageChange(currentPage + 1)}>
                 {t("pagination.next")}
             </Button>
         </PaginationContainer>
