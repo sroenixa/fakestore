@@ -3,13 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lighthouse": "node src/scripts/lighthouse-test.mjs",
+    "lighthouse:ci": "npm run build && npm run start & sleep 10 && npm run lighthouse && kill %1"
   },
   "dependencies": {
     "@types/styled-components": "^5.1.34",
+    "chrome-launcher": "^1.2.0",
+    "lighthouse": "^12.7.1",
     "next": "15.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
