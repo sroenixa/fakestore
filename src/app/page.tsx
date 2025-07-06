@@ -25,7 +25,7 @@ export default async function Home(context: { searchParams: { page?: string,limi
     const productData: ProductsResponse = await productsRes.json()
 
     const categoryRes = await fetch(process.env.NEXT_PUBLIC_BASE_URL+`/api/categories`)
-    if (!categoryRes.ok) throw new Error('Ürünler getirilemedi')
+    if (!categoryRes.ok) throw new Error('Kategoriler getirilemedi')
     const categoryData: string[] = await categoryRes.json()
 
     const filterData = {

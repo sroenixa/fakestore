@@ -89,8 +89,14 @@ export function Filters({ filters, categories, onFiltersChange, onClearFilters }
 
     const [minPrice, setMinPrice] = useState<string>(filters.minPrice ?? "")
     const [maxPrice, setMaxPrice] = useState<string>(filters.maxPrice ?? "")
+    const isFirstRender = useRef(true)
 
     useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false
+            return
+        }
+
         setMinPrice(filters.minPrice ?? "");
         setMaxPrice(filters.maxPrice ?? "");
     }, [filters]);
