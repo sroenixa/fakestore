@@ -33,7 +33,7 @@ Next.js 15, TypeScript ve Styled Components kullanılarak geliştirilmiş projed
 
 ## Yapılar
 - **API Routes**: Fake Store API tarafında filtreleme ve offset özellikleri bulunmadığı için tüm data çekilip API Routes ile filtreleme ve pagination yapılmıştır. 
-- **Component Atomic Design**: En küçük yapı taşları için Atoms, atom içeren componentler için Molecules, atom veya molekül içeren karmaşık yapılar için Organisms, sayfalar için Pages yapısı kullanılmıştır.
+- **Component Atomic Design**: En küçük yapı taşları için (Button, Text) Atoms, atom içeren componentler için (Search, Filter, Card) Molecules, atom veya molekül içeren karmaşık yapılar için (Header, Product Grid) Organisms, sayfalar için (Product List, Product Detail)Pages yapısı kullanılmıştır.
 - **Context API**: Sepet, Dil ve Tema yönetimi için Context yapısı kullanılmıştır.
 - **Performans**: Yavaş çalışabilcek API Route'lara cache, componentlere ise dynamic yapı eklenmiştir.
 
