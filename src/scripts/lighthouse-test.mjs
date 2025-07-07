@@ -1,4 +1,3 @@
-// src/scripts/lighthouse-test.mjs
 import fs from "fs"
 import path from "path"
 import { launch } from "chrome-launcher"
@@ -70,5 +69,4 @@ function avg(results, key) {
     return Math.round(total / Object.keys(results).length)
 }
 
-/* doğrudan çalıştır */
 await runLighthouse()
