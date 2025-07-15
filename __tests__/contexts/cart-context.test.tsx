@@ -52,7 +52,7 @@ describe("CartContext", () => {
         expect(result.current.totalPrice).toBe(product.price * 3);
     });
 
-    it("removeItem ve clearCart sepeti boşaltır", () => {
+    it("removeItem ve clearCart clears cart", () => {
         const { result } = renderHook(() => useCart(), { wrapper });
 
         act(() => {
