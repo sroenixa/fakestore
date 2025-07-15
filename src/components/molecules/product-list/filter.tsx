@@ -89,11 +89,15 @@ export function Filters({ filters, categories, onFiltersChange, onClearFilters }
 
     const [minPrice, setMinPrice] = useState<string>(filters.minPrice ?? "")
     const [maxPrice, setMaxPrice] = useState<string>(filters.maxPrice ?? "")
+    const initialMinPrice = useRef<string>(filters.minPrice ?? "")
+    const initialMaxPrice = useRef<string>(filters.maxPrice ?? "")
     const isFirstRender = useRef(true)
 
     useEffect(() => {
         if (isFirstRender.current) {
             isFirstRender.current = false
+            initialMinPrice.current = filters.minPrice ?? ""
+            initialMaxPrice.current = filters.maxPrice ?? ""
             return
         }
 
@@ -102,25 +106,24 @@ export function Filters({ filters, categories, onFiltersChange, onClearFilters }
     }, [filters]);
 
     useDebouncedEffect(
-        () =>
-            handleFilterChange(
-                "minPrice",
-                minPrice ? Number.parseFloat(minPrice) : undefined,
-            ),
+        () => {
+            if (minPrice !== initialMinPrice.current) {
+                handleFilterChange("minPrice", minPrice ? Number.parseFloat(minPrice) : undefined)
+            }
+        },
         [minPrice],
         1000,
     )
 
     useDebouncedEffect(
-        () =>
-            handleFilterChange(
-                "maxPrice",
-                maxPrice ? Number.parseFloat(maxPrice) : undefined,
-            ),
+        () => {
+            if (maxPrice !== initialMaxPrice.current) {
+                handleFilterChange("maxPrice", maxPrice ? Number.parseFloat(maxPrice) : undefined)
+            }
+        },
         [maxPrice],
         1000,
     )
-
 
     return (
         <FiltersContainer>
