@@ -125,8 +125,9 @@ export function Filters({ filters, categories, onFiltersChange, onClearFilters }
     return (
         <FiltersContainer>
             <FilterGroup>
-                <Label>{_t("category")}</Label>
+                <Label htmlFor={'category'}>{_t("category")}</Label>
                 <Select
+                    id={'category'}
                     value={filters.category || "all"}
                     onChange={(e) => handleFilterChange("category", e.target.value === "all" ? undefined : e.target.value)}
                 >
@@ -140,8 +141,8 @@ export function Filters({ filters, categories, onFiltersChange, onClearFilters }
             </FilterGroup>
 
             <FilterGroup>
-                <Label>{_t("sortBy")}</Label>
-                <Select value={filters.sortBy || ""} onChange={(e) => handleFilterChange("sortBy", e.target.value)}>
+                <Label htmlFor={'sortBy'}>{_t("sortBy")}</Label>
+                <Select id={'sortBy'} value={filters.sortBy || ""} onChange={(e) => handleFilterChange("sortBy", e.target.value)}>
                     <option value="">{_t("default")}</option>
                     <option value="price-asc">{_t("priceLowHigh")}</option>
                     <option value="price-desc">{_t("priceHighLow")}</option>
@@ -151,10 +152,11 @@ export function Filters({ filters, categories, onFiltersChange, onClearFilters }
             </FilterGroup>
 
             <FilterGroup>
-                <Label>{_t("priceRange")}</Label>
+                <Label htmlFor={'priceRange'}>{_t("priceRange")}</Label>
                 <PriceInputs>
                     <PriceInput
                         type="number"
+                        id={'priceRange'}
                         placeholder={_t("min")}
                         value={minPrice}
                         onChange={(e) =>
