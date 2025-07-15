@@ -90,8 +90,8 @@ Coverage dosyası altında ilgili belgeler mevcuttur.
 ## Lighthouse Skorları
 | Sayfa                   | Performance | Accessibility | Best Practices | SEO  |
 |-------------------------|-------------|---------------|----------------|------|
-| http://localhost:3000   | 97          | 90            | 96             | 100  |
-| http://localhost:3000/products/1 | 98          | 95            | 96             | 100  |
-| Ortalama                | 98          | 93            | 96             | 100  |
+| http://localhost:3000   | 98          | 96            | 96             | 100  |
+| http://localhost:3000/products/1 | 91          | 95            | 100            | 100  |
+| Ortalama                | 95          | 96            | 98             | 100  |
 
 Lighthouse-reports dosyası altında ilgili belgeler mevcuttur.
