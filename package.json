@@ -17,6 +17,7 @@
     "chrome-launcher": "^1.2.0",
     "lighthouse": "^12.7.1",
     "next": "15.3.5",
+    "next-intl": "^4.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",

@@ -1,7 +1,8 @@
 "use client"
 
 import styled from "styled-components"
-import {useLanguage} from "@/src/contexts/language-context";
+import { useLocale } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 const LanguageButton = styled.button`
   display: flex;
@@ -26,15 +27,17 @@ const LanguageButton = styled.button`
 `
 
 export function LanguageToggle() {
-    const { language, setLanguage } = useLanguage()
+    const router = useRouter();
+    const localActive = useLocale();
 
     const toggleLanguage = () => {
-        setLanguage(language === "en" ? "tr" : "en")
+        const code = localActive === "en" ? "tr" : "en"
+        router.replace(`/${code}`);
     }
 
     return (
         <LanguageButton onClick={toggleLanguage} aria-label="Toggle language">
-            {language.toUpperCase()}
+            {localActive === "en" ? "TR" : "EN"}
         </LanguageButton>
     )
 }

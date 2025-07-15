@@ -6,11 +6,11 @@ import { useEffect } from "react"
 import styled, { keyframes } from "styled-components"
 import Image from "next/image"
 import { useCart } from "@/src/contexts/cart-context"
-import { useLanguage } from "@/src/contexts/language-context"
 import { Button } from "@/src/components/atoms/button"
 import { Heading2, Text } from "@/src/components/atoms/typography"
 import { Input } from "@/src/components/atoms/input"
 import toast from "react-hot-toast";
+import {useTranslations} from "next-intl";
 
 
 const slideIn = keyframes`
@@ -222,7 +222,7 @@ interface CartPopupProps {
 
 export function CartPopup({ isOpen, onClose }: CartPopupProps) {
     const { items, totalItems, totalPrice, updateQuantity, removeItem, clearCart } = useCart()
-    const { t } = useLanguage()
+    const _t = useTranslations('cart');
 
     useEffect(() => {
         if (isOpen) {
@@ -266,7 +266,7 @@ export function CartPopup({ isOpen, onClose }: CartPopupProps) {
             <CartContainer $isOpen={isOpen}>
                 <CartHeader>
                     <Heading2>
-                        {t("cart.title")} ({totalItems})
+                        {_t("title")} ({totalItems})
                     </Heading2>
                     <CloseButton onClick={onClose}>×</CloseButton>
                 </CartHeader>
@@ -274,8 +274,8 @@ export function CartPopup({ isOpen, onClose }: CartPopupProps) {
                 <CartContent>
                     {items.length === 0 ? (
                         <EmptyCart>
-                            <Text>{t("cart.empty")}</Text>
-                            <Text style={{ fontSize: "14px", marginTop: "8px" }}>{t("cart.emptyDescription")}</Text>
+                            <Text>{_t("empty")}</Text>
+                            <Text style={{ fontSize: "14px", marginTop: "8px" }}>{_t("emptyDescription")}</Text>
                         </EmptyCart>
                     ) : (
                         <CartItems>
@@ -307,14 +307,14 @@ export function CartPopup({ isOpen, onClose }: CartPopupProps) {
                                                 value={item.quantity}
                                                 onChange={(e) => {
                                                     updateQuantity(item.id, Number.parseInt(e.target.value) || 1);
-                                                    toast.success(t("cart.update"))
+                                                    toast.success(_t("update"))
                                                 }}
                                                 min="1"
                                             />
-                                            <QuantityButton onClick={() => {updateQuantity(item.id, item.quantity + 1);  toast.success(t("cart.update")) }}>+</QuantityButton>
+                                            <QuantityButton onClick={() => {updateQuantity(item.id, item.quantity + 1);  toast.success(_t("update")) }}>+</QuantityButton>
                                         </QuantityControls>
 
-                                        <RemoveButton onClick={() => {removeItem(item.id);  toast.success(t("cart.remove"))} }>{t("cart.removeFromCart")}</RemoveButton>
+                                        <RemoveButton onClick={() => {removeItem(item.id);  toast.success(_t("remove"))} }>{_t("removeFromCart")}</RemoveButton>
                                     </ItemInfo>
                                 </CartItem>
                             ))}
@@ -325,22 +325,22 @@ export function CartPopup({ isOpen, onClose }: CartPopupProps) {
                 {items.length > 0 && (
                     <CartFooter>
                         <SummaryRow>
-                            <Text>{t("cart.subtotal")}</Text>
+                            <Text>{_t("subtotal")}</Text>
                             <Text>${totalPrice.toFixed(2)}</Text>
                         </SummaryRow>
 
                         <SummaryRow>
-                            <Text>{t("cart.tax")}</Text>
+                            <Text>{_t("tax")}</Text>
                             <Text>${(totalPrice * 0.08).toFixed(2)}</Text>
                         </SummaryRow>
 
                         <SummaryRow>
-                            <Text>{t("cart.total")}</Text>
+                            <Text>{_t("total")}</Text>
                             <Text>${(totalPrice * 1.08).toFixed(2)}</Text>
                         </SummaryRow>
 
-                        <Button size={"large"} variant="outline" onClick={() => {toast.success(t("cart.clear")); clearCart()} } style={{ marginTop: "8px" }}>
-                            {t("cart.clearCart")}
+                        <Button size={"large"} variant="outline" onClick={() => {toast.success(_t("clear")); clearCart()} } style={{ marginTop: "8px" }}>
+                            {_t("clearCart")}
                         </Button>
                     </CartFooter>
                 )}

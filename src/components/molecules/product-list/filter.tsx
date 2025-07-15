@@ -3,10 +3,10 @@
 import styled from "styled-components"
 import { Select, Input } from "@/src/components/atoms/input"
 import { Button } from "@/src/components/atoms/button"
-import { useLanguage } from "@/src/contexts/language-context"
 import type { ProductFilters } from "@/src/types/product"
 import {useDebouncedEffect} from "@/src/hooks/useDebouncedEffect";
 import {useEffect, useRef, useState} from "react";
+import {useTranslations} from "next-intl";
 
 const FiltersContainer = styled.div`
   display: flex;
@@ -72,8 +72,8 @@ interface FiltersProps {
 }
 
 export function Filters({ filters, categories, onFiltersChange, onClearFilters }: FiltersProps) {
-    const { t } = useLanguage()
-
+    const _t = useTranslations('filters');
+    const _t_c = useTranslations('category');
     const handleFilterChange = (key: keyof ProductFilters, value: any) => {
         onFiltersChange({
             ...filters,
@@ -82,8 +82,8 @@ export function Filters({ filters, categories, onFiltersChange, onClearFilters }
     }
 
     const getCategoryTranslation = (category: string) => {
-        const categoryKey = `category.${category}`
-        const translation = t(categoryKey)
+        const categoryKey = `${category}`
+        const translation = _t_c(categoryKey)
         return translation === categoryKey ? category.charAt(0).toUpperCase() + category.slice(1) : translation
     }
 
@@ -125,12 +125,12 @@ export function Filters({ filters, categories, onFiltersChange, onClearFilters }
     return (
         <FiltersContainer>
             <FilterGroup>
-                <Label>{t("filters.category")}</Label>
+                <Label>{_t("category")}</Label>
                 <Select
                     value={filters.category || "all"}
                     onChange={(e) => handleFilterChange("category", e.target.value === "all" ? undefined : e.target.value)}
                 >
-                    <option value="all">{t("filters.allCategories")}</option>
+                    <option value="all">{_t("allCategories")}</option>
                     {categories.map((category) => (
                         <option key={category} value={category}>
                             {getCategoryTranslation(category)}
@@ -140,22 +140,22 @@ export function Filters({ filters, categories, onFiltersChange, onClearFilters }
             </FilterGroup>
 
             <FilterGroup>
-                <Label>{t("filters.sortBy")}</Label>
+                <Label>{_t("sortBy")}</Label>
                 <Select value={filters.sortBy || ""} onChange={(e) => handleFilterChange("sortBy", e.target.value)}>
-                    <option value="">{t("filters.default")}</option>
-                    <option value="price-asc">{t("filters.priceLowHigh")}</option>
-                    <option value="price-desc">{t("filters.priceHighLow")}</option>
-                    <option value="rating">{t("filters.highestRated")}</option>
-                    <option value="title">{t("filters.nameAZ")}</option>
+                    <option value="">{_t("default")}</option>
+                    <option value="price-asc">{_t("priceLowHigh")}</option>
+                    <option value="price-desc">{_t("priceHighLow")}</option>
+                    <option value="rating">{_t("highestRated")}</option>
+                    <option value="title">{_t("nameAZ")}</option>
                 </Select>
             </FilterGroup>
 
             <FilterGroup>
-                <Label>{t("filters.priceRange")}</Label>
+                <Label>{_t("priceRange")}</Label>
                 <PriceInputs>
                     <PriceInput
                         type="number"
-                        placeholder={t("filters.min")}
+                        placeholder={_t("min")}
                         value={minPrice}
                         onChange={(e) =>
                             setMinPrice(e.target.value === "" ? "" : e.target.value)
@@ -165,7 +165,7 @@ export function Filters({ filters, categories, onFiltersChange, onClearFilters }
                     <PriceInput
                         type="number"
                         value={maxPrice}
-                        placeholder={t("filters.max")}
+                        placeholder={_t("max")}
                         onChange={(e) =>
                             setMaxPrice(e.target.value === "" ? "" : e.target.value)
                         }
@@ -175,7 +175,7 @@ export function Filters({ filters, categories, onFiltersChange, onClearFilters }
 
             <ClearButtonGroup>
                 <Button variant="outline" onClick={onClearFilters}>
-                    {t("filters.clear")}
+                    {_t("clear")}
                 </Button>
             </ClearButtonGroup>
         </FiltersContainer>

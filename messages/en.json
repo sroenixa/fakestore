@@ -1,0 +1,59 @@
+{
+  "header": {
+    "title": "FakeStore"
+  },
+  "category": {
+    "electronics": "Electronics",
+    "jewelery": "Jewelry",
+    "men's clothing": "Men's Clothing",
+    "women's clothing": "Women's Clothing"
+  },
+  "filters": {
+    "category": "Category",
+    "allCategories": "All Categories",
+    "sortBy": "Sort By",
+    "default": "Default",
+    "priceLowHigh": "Price: Low to High",
+    "priceHighLow": "Price: High to Low",
+    "highestRated": "Highest Rated",
+    "nameAZ": "Name A-Z",
+    "priceRange": "Price Range",
+    "min": "Min",
+    "max": "Max",
+    "clear": "Clear Filters"
+  },
+  "search": {
+    "button": "Search",
+    "placeholder": "Search for products..."
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "showing": "Showing",
+    "of": "of",
+    "products": "products"
+  },
+  "products": {
+    "noFound": "No products found",
+    "adjustFilters": "Try adjusting your search or filters",
+    "addToCart": "Add To Cart",
+    "link": "/en/products/"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "items": "items",
+    "empty": "Your cart is empty",
+    "emptyDescription": "Add some products to get started!",
+    "continueShopping": "Continue Shopping",
+    "each": "each",
+    "removeFromCart": "Remove from Cart",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "total": "Total",
+    "clearCart": "Clear Cart",
+    "add": "Product Added To Cart",
+    "clear": "Cart Cleared",
+    "update": "Cart Updated",
+    "remove": "Product Removed"
+  }
+}

@@ -3,7 +3,7 @@
 import styled from "styled-components"
 import type { Product } from "@/src/types/product"
 import { ProductCard } from "@/src/components/molecules/product-list/product-card"
-import { useLanguage } from "@/src/contexts/language-context"
+import {useTranslations} from "next-intl";
 
 const Grid = styled.div`
   display: grid;
@@ -38,14 +38,14 @@ interface ProductGridProps {
 }
 
 export function ProductGrid({ products }: ProductGridProps) {
-    const { t } = useLanguage()
+    const _t = useTranslations('products');
 
     if (products.length === 0) {
         return (
             <Grid>
                 <EmptyState>
-                    <h3>{t("products.noFound")}</h3>
-                    <p>{t("products.adjustFilters")}</p>
+                    <h3>{_t("noFound")}</h3>
+                    <p>{_t("adjustFilters")}</p>
                 </EmptyState>
             </Grid>
         )

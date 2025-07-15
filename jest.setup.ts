@@ -19,4 +19,17 @@ jest.mock("react-hot-toast", () => {
     }
 })
 
-
+jest.mock('next-intl', () => ({
+    useTranslations: () => {
+        return (key: string) => {
+            const dictionary: Record<string, string> = {
+                'electronics': 'Electronics',
+                'jewelery': 'Jewelry',
+                'addToCart': 'Add To Cart',
+                'add':'Product Added To Cart'
+            };
+            return dictionary[key] || key;
+        };
+    },
+    useLocale: () => 'en',
+}));

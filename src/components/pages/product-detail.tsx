@@ -6,9 +6,9 @@ import {Text, SmallText, Heading1} from "@/src/components/atoms/typography";
 import {Button} from "@/src/components/atoms/button";
 import {Rating} from "@/src/components/atoms/rating";
 import {useCart} from "@/src/contexts/cart-context";
-import {useLanguage} from "@/src/contexts/language-context";
 import Image from "next/image"
 import toast from "react-hot-toast";
+import {useTranslations} from "next-intl";
 
 
 const ProductLayout = styled.div`
@@ -82,16 +82,18 @@ interface ProductListProps {
 export default function ProductDetail({product}: ProductListProps  ) {
 
     const { addItem } = useCart()
-    const { t } = useLanguage()
+    const _t = useTranslations('products');
+    const _t_cart = useTranslations('cart');
+    const _t_category = useTranslations('category');
 
     const handleAddToCart = () => {
         addItem(product)
-        toast.success(t("cart.add"))
+        toast.success(_t_cart("add"))
     }
 
     const getCategoryTranslation = (category: string) => {
-        const categoryKey = `category.${category}`
-        const translation = t(categoryKey)
+        const categoryKey = `${category}`
+        const translation = _t_category(categoryKey)
         return translation === categoryKey ? category : translation
     }
 
@@ -123,7 +125,7 @@ export default function ProductDetail({product}: ProductListProps  ) {
 
                     <ActionSection>
                         <Button size="large" onClick={handleAddToCart}>
-                            {t("product.addToCart")}
+                            {_t("addToCart")}
                         </Button>
                     </ActionSection>
                 </ProductInfo>

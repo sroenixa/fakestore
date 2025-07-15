@@ -4,7 +4,7 @@ import type React from "react"
 import styled from "styled-components"
 import { Input } from "@/src/components/atoms/input"
 import { Button } from "@/src/components/atoms/button"
-import { useLanguage } from "@/src/contexts/language-context"
+import {useTranslations} from "next-intl";
 
 const SearchContainer = styled.div`
   display: flex;
@@ -32,8 +32,7 @@ interface SearchBarProps {
 }
 
 export function SearchBar({ value, onChange, onSearch, placeholder }: SearchBarProps) {
-    const { t } = useLanguage()
-
+    const _t = useTranslations('search');
     const handleKeyPress = (e: React.KeyboardEvent) => {
         if (e.key === "Enter") {
             onSearch()
@@ -47,9 +46,9 @@ export function SearchBar({ value, onChange, onSearch, placeholder }: SearchBarP
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder={placeholder || t("search.placeholder")}
+                placeholder={placeholder || _t("placeholder")}
             />
-            <Button onClick={onSearch}>{t("search.button")}</Button>
+            <Button onClick={onSearch}>{_t("button")}</Button>
         </SearchContainer>
     )
 }
