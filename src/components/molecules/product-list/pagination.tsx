@@ -2,7 +2,7 @@
 
 import styled from "styled-components"
 import { Button } from "@/src/components/atoms/button"
-import { useLanguage } from "@/src/contexts/language-context"
+import {useTranslations} from "next-intl";
 
 const PaginationContainer = styled.div`
   display: flex;
@@ -26,7 +26,8 @@ interface PaginationProps {
 }
 
 export function Pagination({ currentPage, totalItems, itemsPerPage, onPageChange }: PaginationProps) {
-    const { t } = useLanguage()
+    const _t = useTranslations('pagination');
+
     const totalPages = Math.ceil(totalItems / itemsPerPage)
     const startItem = (currentPage - 1) * itemsPerPage + 1
     const endItem = Math.min(currentPage * itemsPerPage, totalItems)
@@ -37,15 +38,15 @@ export function Pagination({ currentPage, totalItems, itemsPerPage, onPageChange
         <PaginationContainer>
 
             <Button variant="outline" disabled={currentPage === 1} onClick={() => onPageChange(currentPage - 1)}>
-                {t("pagination.previous")}
+                {_t("previous")}
             </Button>
 
             <PageInfo>
-                {t("pagination.showing")} {startItem}-{endItem} {t("pagination.of")} {totalItems} {t("pagination.products")}
+                {_t("showing")} {startItem}-{endItem} {_t("of")} {totalItems} {_t("products")}
             </PageInfo>
 
             <Button variant="outline" disabled={currentPage === totalPages} onClick={() => onPageChange(currentPage + 1)}>
-                {t("pagination.next")}
+                {_t("next")}
             </Button>
         </PaginationContainer>
     )

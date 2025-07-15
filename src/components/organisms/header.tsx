@@ -5,8 +5,8 @@ import Link from "next/link"
 import { Heading2 } from "@/src/components/atoms/typography"
 import { ThemeToggle } from "@/src/components/atoms/theme-toggle"
 import { LanguageToggle } from "@/src/components/atoms/language-toggle"
-import { useLanguage } from "@/src/contexts/language-context"
 import {CartIconComponent} from "@/src/components/molecules/cart/cart-icon";
+import {useTranslations} from "next-intl";
 
 const HeaderContainer = styled.header`
   background: ${(props) => props.theme.colors.surface};
@@ -43,13 +43,13 @@ const Controls = styled.div`
 `
 
 export function Header() {
-    const { t } = useLanguage()
+    const _t = useTranslations('header');
 
     return (
         <HeaderContainer>
             <HeaderContent>
                 <Link href="/">
-                    <Heading2>{t("header.title")}</Heading2>
+                    <Heading2>{_t("title")}</Heading2>
                 </Link>
                 <Nav>
                     <Controls>

@@ -1,7 +1,4 @@
-import {Header} from "@/src/components/organisms/header";
 import {ProductsResponse} from "@/src/types/product";
-import {Filters} from "@/src/components/molecules/product-list/filter";
-import ProductList from "@/src/components/pages/product-list";
 import dynamic from "next/dynamic";
 
 interface SearchParams {

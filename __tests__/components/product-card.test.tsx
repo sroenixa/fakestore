@@ -3,7 +3,6 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import { ThemeProvider } from "styled-components"
 import { ProductCard } from "@/src/components/molecules/product-list/product-card"
 import { CartProvider } from "@/src/contexts/cart-context"
-import { LanguageProvider } from "@/src/contexts/language-context"
 import { CustomThemeProvider, lightTheme } from "@/src/contexts/theme-context"
 import type { Product } from "@/src/types/product"
 import { toast } from "react-hot-toast"
@@ -23,13 +22,11 @@ const mockProduct: Product = {
 
 const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
-        <LanguageProvider>
-            <CustomThemeProvider>
-                <CartProvider>
-                    {children}
-                </CartProvider>
-            </CustomThemeProvider>
-        </LanguageProvider>
+        <CustomThemeProvider>
+            <CartProvider>
+                {children}
+            </CartProvider>
+        </CustomThemeProvider>
     )
 }
 
@@ -48,7 +45,7 @@ describe("ProductCard", () => {
         expect(screen.getByText("Test Product")).toBeInTheDocument()
         expect(screen.getByText("$29.99")).toBeInTheDocument()
         expect(screen.getByText("Electronics")).toBeInTheDocument()
-        expect(screen.getByRole("button", { name: /add to cart/i })).toBeInTheDocument()
+        expect(screen.getByRole("button", { name: "Add To Cart" })).toBeInTheDocument()
     })
 
     it("displays product image with correct attributes", () => {
@@ -80,7 +77,8 @@ describe("ProductCard", () => {
             </TestWrapper>,
         )
 
-        const addToCartButton = screen.getByRole("button", { name: /add to cart/i })
+        const addToCartButton =  screen.getByRole("button", { name: "Add To Cart" })
+
         fireEvent.click(addToCartButton)
 
         await waitFor(() => {

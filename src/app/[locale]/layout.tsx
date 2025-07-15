@@ -3,12 +3,13 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import StyledComponentsRegistry from "@/src/lib/styled-components-registry";
 import {CustomThemeProvider} from "@/src/contexts/theme-context";
-import {LanguageProvider} from "@/src/contexts/language-context";
 import {Header} from "@/src/components/organisms/header";
 import {StyledContainer} from "@/src/components/atoms/container";
 import {CartProvider} from "@/src/contexts/cart-context";
 import {Toaster} from 'react-hot-toast';
-
+import {NextIntlClientProvider} from 'next-intl';
+import {getMessages} from 'next-intl/server';
+import {notFound} from 'next/navigation';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,17 +25,26 @@ export const metadata: Metadata = {
 }
 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+    params
 }: Readonly<{
   children: React.ReactNode;
+    params: Promise<{ locale: string }>
 }>) {
-  return (
-    <html lang="en">
+
+    const messages = await getMessages();
+    const { locale } = await params;
+
+    if (!['tr', 'en'].includes(locale)) {
+        notFound();
+    }
+    return (
+    <html lang={locale}>
       <body className={`${inter.className}`}>
+      <NextIntlClientProvider  messages={messages}>
       <CustomThemeProvider >
         <CartProvider>
-          <LanguageProvider>
             <StyledComponentsRegistry>
               <Header/>
                 <StyledContainer>
@@ -44,9 +54,9 @@ export default function RootLayout({
                     {children}
                 </StyledContainer>
             </StyledComponentsRegistry>
-          </LanguageProvider>
         </CartProvider>
       </CustomThemeProvider>
+      </NextIntlClientProvider>
       </body>
     </html>
   );

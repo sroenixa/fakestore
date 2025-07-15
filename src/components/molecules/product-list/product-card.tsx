@@ -8,9 +8,9 @@ import type { Product } from "@/src/types/product"
 import { Button } from "@/src/components/atoms/button"
 import {Heading3, SmallText, Text} from "@/src/components/atoms/typography"
 import { Rating } from "@/src/components/atoms/rating"
-import { useLanguage } from "@/src/contexts/language-context"
 import { useCart } from "@/src/contexts/cart-context"
 import toast from "react-hot-toast";
+import {useTranslations} from "next-intl";
 
 
 const Card = styled.div`
@@ -62,25 +62,27 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-    const { t } = useLanguage()
+    const _t = useTranslations('products');
+    const _t_category = useTranslations('category');
+    const _t_cart = useTranslations('cart');
     const { addItem } = useCart()
 
     const handleAddToCart = (e: React.MouseEvent) => {
         e.preventDefault()
         e.stopPropagation()
         addItem(product)
-        toast.success(t("cart.add"))
+        toast.success(_t_cart("add"))
     }
 
     const getCategoryTranslation = (category: string) => {
-        const categoryKey = `category.${category}`
-        const translation = t(categoryKey)
+        const categoryKey = `${category}`
+        const translation = _t_category(categoryKey)
         return translation === categoryKey ? category : translation
     }
 
     return (
         <Card>
-            <Link href={`/products/${product.id}`}>
+            <Link href={_t("link")+`${product.id}`}>
                 <ImageContainer>
                     <Image
                         src={product.image || "/placeholder.svg"}
@@ -103,7 +105,7 @@ export function ProductCard({ product }: ProductCardProps) {
                 </Content>
                 <ButtonContainer>
                     <Button size={"large"} onClick={handleAddToCart} type="button">
-                        {t("product.addToCart")}
+                        {_t("addToCart")}
                     </Button>
                 </ButtonContainer>
             </Link>

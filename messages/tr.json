@@ -1,0 +1,59 @@
+{
+  "header": {
+    "title": "FakeStore"
+  },
+  "category": {
+    "electronics": "Elektronik",
+    "jewelery": "Mücevher",
+    "men's clothing": "Erkek Giyim",
+    "women's clothing": "Kadın Giyim"
+  },
+  "filters": {
+    "category": "Kategori",
+    "allCategories": "Tüm Kategoriler",
+    "sortBy": "Sırala",
+    "default": "Varsayılan",
+    "priceLowHigh": "Fiyat: Düşükten Yükseğe",
+    "priceHighLow": "Fiyat: Yüksekten Düşüğe",
+    "highestRated": "En Yüksek Puanlı",
+    "nameAZ": "İsim A-Z",
+    "priceRange": "Fiyat Aralığı",
+    "min": "Min",
+    "max": "Maks",
+    "clear": "Filtreleri Temizle"
+  },
+  "search": {
+    "button": "Ara",
+    "placeholder": "Ürün ara..."
+  },
+  "pagination": {
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "showing": "Gösterilen",
+    "of": "/",
+    "products": "ürün"
+  },
+  "products": {
+    "noFound": "Ürün bulunamadı",
+    "adjustFilters": "Arama veya filtrelerinizi ayarlamayı deneyin",
+    "addToCart": "Sepete Ekle",
+    "link": "/tr/urunler/"
+  },
+  "cart": {
+    "title": "Alışveriş Sepeti",
+    "items": "ürün",
+    "empty": "Sepetiniz boş",
+    "emptyDescription": "Başlamak için birkaç ürün ekleyin!",
+    "continueShopping": "Alışverişe Devam Et",
+    "each": "adet",
+    "removeFromCart": "Sepetten Çıkar",
+    "subtotal": "Ara Toplam",
+    "tax": "Vergi",
+    "total": "Toplam",
+    "clearCart": "Sepeti Temizle",
+    "add": "Ürün Sepete Eklendi",
+    "clear": "Sepet Temizlendi",
+    "update": "Sepet Güncellendi",
+    "remove": "Ürün Sepetten Çıkartıldı"
+  }
+}
